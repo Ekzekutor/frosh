@@ -2,6 +2,7 @@ package frames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import logik.Connector;
 
 @SuppressWarnings({"serial","unused","rawtypes","unchecked"})
 public class ClientFrame extends JFrame {
@@ -28,6 +31,7 @@ public class ClientFrame extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel label_1;
 	private JComboBox regionBox;
+	private Connector connector = new Connector();
 	/**
 	 * Launch the application.
 	 */
@@ -50,13 +54,14 @@ public class ClientFrame extends JFrame {
 		questionLabel.setBounds(185, 6, 61, 16);
 		contentPane.add(questionLabel);
 		
-		JLabel textLbl = new JLabel("Имя");
+		JLabel textLbl = new JLabel("Р�РјСЏ");
 		textLbl.setBounds(22, 39, 61, 16);
 		contentPane.add(textLbl);
 		
-		nextButton = new JButton("Продолжить");
+		nextButton = new JButton("РџСЂРѕРґРѕР»Р¶РёС‚СЊ");
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				manager.goToQuestion();
 				
 				
@@ -81,11 +86,11 @@ public class ClientFrame extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		lblNewLabel = new JLabel("Фамилия");
+		lblNewLabel = new JLabel("Р¤Р°РјРёР»РёСЏ");
 		lblNewLabel.setBounds(22, 67, 61, 16);
 		contentPane.add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("Отчество");
+		lblNewLabel_1 = new JLabel("РћС‚С‡РµСЃС‚РІРѕ");
 		lblNewLabel_1.setBounds(22, 97, 61, 16);
 		contentPane.add(lblNewLabel_1);
 		
@@ -94,7 +99,7 @@ public class ClientFrame extends JFrame {
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
-		label = new JLabel("Дата рождения");
+		label = new JLabel("Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ");
 		label.setBounds(22, 125, 111, 16);
 		contentPane.add(label);
 		
@@ -103,19 +108,19 @@ public class ClientFrame extends JFrame {
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
-		lblNewLabel_2 = new JLabel("Паспорт");
+		lblNewLabel_2 = new JLabel("РџР°СЃРїРѕСЂС‚");
 		lblNewLabel_2.setBounds(22, 156, 61, 16);
 		contentPane.add(lblNewLabel_2);
 		
-		label_1 = new JLabel("Регион");
+		label_1 = new JLabel("Р РµРіРёРѕРЅ");
 		label_1.setBounds(22, 186, 61, 16);
 		contentPane.add(label_1);
 		
 		regionBox = new JComboBox();
-		regionBox.addItem("Московская обл.");
-		regionBox.addItem("Чечьнья");
-		regionBox.addItem("респ. Крым");
-		regionBox.addItem("Рязанская обл.");
+		ArrayList<String> reg=connector.getRegions();
+		for (int i=0; i<reg.size();i++) {
+			regionBox.addItem(reg.get(i));
+		}
 		regionBox.setBounds(145, 182, 280, 27);
 		contentPane.add(regionBox);
 		
